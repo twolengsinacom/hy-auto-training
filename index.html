@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>华域汽车质量培训讲堂 - 线上</title>
+    <style>
+        /* 基础样式 */
+        :root {
+            --primary-color: #2d5f9e;  /* 企业蓝配色 */
+            --secondary-color: #e63946; /* 强调色 */
+        }
+        body {
+            font-family: "Microsoft YaHei", Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background: #f0f3f5;
+        }
+        
+        /* 课程卡片布局 */
+        .header {
+            text-align: center;
+            padding: 30px;
+            background: var(--primary-color);
+            color: white;
+            margin-bottom: 30px;
+        }
+        .course-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+        .course-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .course-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* 交互元素 */
+        .meeting-link {
+            display: block;
+            background: var(--primary-color);
+            color: white !important;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            text-decoration: none;
+            margin: 15px 0;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部 -->
+    <div class="header">
+        <h1>华域汽车质量培训讲堂 - 线上</h1>
+        <p>学无止境，共同前行</p>
+    </div>
+
+    <!-- 课程卡片容器 -->
+    <div class="course-container">
+        <!-- 先期产品质量策划-安全投产 -->
+        <div class="course-card">
+            <h2>先期产品质量策划-安全投产</h2>
+            <div class="course-meta">
+                <span>📅 2025-4-18</span>
+                <span>⏱ 30分钟</span>
+            </div>
+            
+            <!-- 会议链接 -->
+            <a href="https://meeting.tencent.com/crm/NxPez951bd" 
+               class="meeting-link"
+               target="_blank">
+               进入课程
+            </a>
+
+            <div class="course-desc">
+                <h3>课程大纲：</h3>
+                <ul>
+                    <li>概念辨析</li>
+                    <li>阶段划分</li>
+                    <li>活动构成</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 后续可在此添加更多课程卡片 -->
+    </div>
+
+    <script>
+        // 链接点击统计（本地存储）
+        document.querySelectorAll('.meeting-link').forEach(link => {
+            link.addEventListener('click', () => {
+                const courseTitle = link.closest('.course-card').querySelector('h2').innerText;
+                const history = JSON.parse(localStorage.getItem('trainingLog') || '[]');
+                
+                const record = {
+                    course: courseTitle,
+                    time: new Date().toLocaleString(),
+                    type: '腾讯会议'
+                };
+                
+                history.push(record);
+                localStorage.setItem('trainingLog', JSON.stringify(history));
+            });
+        });
+    </script>
+</body>
+</html>
